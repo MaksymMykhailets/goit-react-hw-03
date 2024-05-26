@@ -1,6 +1,6 @@
 import Contact from '../Contact/Contact';
 
-const ContactList = ({ contacts, filter }) => {
+const ContactList = ({ contacts, filter, deleteContact }) => {
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -8,7 +8,11 @@ const ContactList = ({ contacts, filter }) => {
   return (
     <ul>
       {filteredContacts.map(contact => (
-        <Contact key={contact.id} contact={contact} />
+        <Contact
+          key={contact.id}
+          contact={contact}
+          deleteContact={deleteContact}
+        />
       ))}
     </ul>
   );

@@ -18,12 +18,22 @@ const App = () => {
     setContacts(prevContacts => [...prevContacts, contact]);
   };
 
+  const deleteContact = contactId => {
+    setContacts(prevContacts =>
+      prevContacts.filter(contact => contact.id !== contactId)
+    );
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox filter={filter} setFilter={setFilter} />
-      <ContactList contacts={contacts} filter={filter} />
+      <ContactList
+        contacts={contacts}
+        filter={filter}
+        deleteContact={deleteContact}
+      />
     </div>
   );
 };
