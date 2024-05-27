@@ -4,6 +4,7 @@ import initialContacts from './components/ContactList/contacts.json';
 import ContactForm from './components/ContactForm/ContactForm';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactList from './components/ContactList/ContactList';
+import styles from './App.module.css';
 
 function App() {
   const [filter, setFilter] = useState('');
@@ -35,7 +36,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={styles.appContainer}>
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <SearchBox filter={filter} setFilter={setFilter} />

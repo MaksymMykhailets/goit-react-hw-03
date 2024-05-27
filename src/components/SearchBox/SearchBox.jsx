@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import styles from './SearchBox.module.css';
 
 const SearchBox = ({ filter, setFilter }) => {
   const searchId = useId();
@@ -8,7 +9,7 @@ const SearchBox = ({ filter, setFilter }) => {
   };
 
   return (
-    <>
+    <div className={styles.searchBox}>
       <label htmlFor={searchId}>Find contacts by name</label>
       <input
         type="text"
@@ -16,8 +17,9 @@ const SearchBox = ({ filter, setFilter }) => {
         value={filter}
         id={searchId}
         onChange={handleChange}
+        className={styles.input}
       />
-    </>
+    </div>
   );
 };
 

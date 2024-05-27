@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useId } from 'react';
+import styles from './ContactForm.module.css';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -33,18 +34,33 @@ const ContactForm = ({ addContact }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
-        <div>
-          <label htmlFor={userId}>Name</label>
-          <Field name="name" type="text" id={userId} />
-          <ErrorMessage name="name" component="div" />
+      <Form className={styles.form}>
+        <div className={styles.formGroup}>
+          <label htmlFor={userId} className={styles.label}>
+            Name
+          </label>
+          <Field name="name" type="text" id={userId} className={styles.input} />
+          <ErrorMessage name="name" component="div" className={styles.error} />
         </div>
-        <div>
-          <label htmlFor={numberId}>Number</label>
-          <Field name="number" type="text" id={numberId} />
-          <ErrorMessage name="number" component="div" />
+        <div className={styles.formGroup}>
+          <label htmlFor={numberId} className={styles.label}>
+            Number
+          </label>
+          <Field
+            name="number"
+            type="text"
+            id={numberId}
+            className={styles.input}
+          />
+          <ErrorMessage
+            name="number"
+            component="div"
+            className={styles.error}
+          />
         </div>
-        <button type="submit">Add Contact</button>
+        <button type="submit" className={styles.button}>
+          Add Contact
+        </button>
       </Form>
     </Formik>
   );
