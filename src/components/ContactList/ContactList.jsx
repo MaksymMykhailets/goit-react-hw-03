@@ -1,16 +1,14 @@
 import Contact from '../Contact/Contact';
 
-const ContactList = ({ contacts, filter, deleteContact }) => {
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
+const ContactList = ({ contacts, deleteContact }) => {
   return (
     <ul>
-      {filteredContacts.map(contact => (
+      {contacts.map(({ id, name, number }) => (
         <Contact
-          key={contact.id}
-          contact={contact}
+          key={id}
+          id={id}
+          name={name}
+          number={number}
           deleteContact={deleteContact}
         />
       ))}

@@ -1,31 +1,29 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
+import { useId } from 'react';
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(3, 'Must be at least 3 characters')
+    .max(50, 'Must be 50 characters or less')
+    .required('Required'),
+  number: Yup.string()
+    .min(3, 'Must be at least 3 characters')
+    .max(50, 'Must be 50 characters or less')
+    .required('Required'),
+});
 
 const ContactForm = ({ addContact }) => {
+  const userId = useId();
+  const numberId = useId();
+
   const initialValues = {
     name: '',
     number: '',
   };
 
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .min(3, 'Must be at least 3 characters')
-      .max(50, 'Must be 50 characters or less')
-      .required('Required'),
-    number: Yup.string()
-      .min(3, 'Must be at least 3 characters')
-      .max(50, 'Must be 50 characters or less')
-      .required('Required'),
-  });
-
   const handleSubmit = (values, { resetForm }) => {
-    const newContact = {
-      id: nanoid(),
-      name: values.name,
-      number: values.number,
-    };
-    addContact(newContact);
+    addContact({ name: values.name, number: values.number });
     resetForm();
   };
 
@@ -37,13 +35,13 @@ const ContactForm = ({ addContact }) => {
     >
       <Form>
         <div>
-          <label htmlFor="name">Name</label>
-          <Field name="name" type="text" />
+          <label htmlFor={userId}>Name</label>
+          <Field name="name" type="text" id={userId} />
           <ErrorMessage name="name" component="div" />
         </div>
         <div>
-          <label htmlFor="number">Number</label>
-          <Field name="number" type="text" />
+          <label htmlFor={numberId}>Number</label>
+          <Field name="number" type="text" id={numberId} />
           <ErrorMessage name="number" component="div" />
         </div>
         <button type="submit">Add Contact</button>

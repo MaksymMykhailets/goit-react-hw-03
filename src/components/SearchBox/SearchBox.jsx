@@ -1,12 +1,22 @@
+import { useId } from 'react';
+
 const SearchBox = ({ filter, setFilter }) => {
+  const searchId = useId();
+
   const handleChange = e => {
     setFilter(e.target.value);
   };
 
   return (
     <>
-      <p>Find contacts by Name</p>
-      <input type="text" value={filter} onChange={handleChange} />
+      <label htmlFor={searchId}>Find contacts by name</label>
+      <input
+        type="text"
+        name="search"
+        value={filter}
+        id={searchId}
+        onChange={handleChange}
+      />
     </>
   );
 };
